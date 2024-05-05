@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "byauwdada",
+  "version": "${version}",
+  "name": "byauwdada",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/xet/byauwdada"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/byauwdada/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.xet.byauwdada.ModBossesClient"
+    ],
+    "main": [
+      "org.xet.byauwdada.ModBosses"
+    ]
+  },
+  "mixins": [
+    "byauwdada.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
