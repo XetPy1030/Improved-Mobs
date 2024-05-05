@@ -34,6 +34,8 @@ public abstract class CreeperMixin extends HostileEntity implements SkinOverlayO
     @Shadow
     private int fuseTime = 25;
 
+    @Shadow public abstract boolean tryAttack(Entity target);
+
     protected CreeperMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -49,7 +51,9 @@ public abstract class CreeperMixin extends HostileEntity implements SkinOverlayO
             SoundEvent soundEvent = itemStack.isOf(Items.FIRE_CHARGE) ? SoundEvents.ITEM_FIRECHARGE_USE : SoundEvents.ITEM_FLINTANDSTEEL_USE;
             this.getWorld().playSound(player, this.getX(), this.getY(), this.getZ(), soundEvent, this.getSoundCategory(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
             if (!this.getWorld().isClient) {
-                this.dropItem(Items.GUNPOWDER);
+                if (this.random.nextBoolean()) {
+                    this.dropItem(Items.GUNPOWDER);
+                }
                 itemStack.decrement(1);
             }
 
