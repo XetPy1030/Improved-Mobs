@@ -22,8 +22,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(AbstractSkeletonEntity.class)
 public abstract class AbstractSkeletonMixin extends HostileEntity implements RangedAttackMob {
-    @Final
     @Shadow
+    @Final
     private final BowAttackGoal<AbstractSkeletonEntity> bowAttackGoal = new BowAttackGoal(this, 1.3, 10, 20.0F);
 
     @Shadow

@@ -45,7 +45,7 @@ public abstract class CreeperMixin extends HostileEntity implements SkinOverlayO
      * @reason
      */
     @Overwrite
-    protected ActionResult interactMob(PlayerEntity player, Hand hand) {
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isFood()) {
             SoundEvent soundEvent = itemStack.isOf(Items.FIRE_CHARGE) ? SoundEvents.ITEM_FIRECHARGE_USE : SoundEvents.ITEM_FLINTANDSTEEL_USE;

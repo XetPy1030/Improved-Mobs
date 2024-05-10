@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractSkeletonMixin",
     "CreeperMixin",
+    "EnchantCommandMixin",
     "ExperienceOrbMixin",
     "PlayerMixin",
     "SpiderMixin",

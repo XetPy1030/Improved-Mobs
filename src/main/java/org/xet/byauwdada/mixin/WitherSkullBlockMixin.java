@@ -67,7 +67,9 @@ public class WitherSkullBlockMixin {
                     if (improvedZombieEntity != null) {
                         CarvedPumpkinBlock.breakPatternBlocks(world, resultUpgrade);
                         BlockPos blockPos = resultUpgrade.translate(1, 2, 0).getBlockPos();
-                        improvedZombieEntity.refreshPositionAndAngles((double)blockPos.getX() + 0.5, (double)blockPos.getY() + 0.55, (double)blockPos.getZ() + 0.5, result.getForwards().getAxis() == Direction.Axis.X ? 0.0F : 90.0F, 0.0F);
+                        improvedZombieEntity.refreshPositionAndAngles(
+                                (double)blockPos.getX() + 0.5, (double)blockPos.getY() + 0.55, (double)blockPos.getZ() + 0.5,
+                                resultUpgrade.getForwards().getAxis() == Direction.Axis.X ? 0.0F : 90.0F, 0.0F);
                         improvedZombieEntity.bodyYaw = resultUpgrade.getForwards().getAxis() == Direction.Axis.X ? 0.0F : 90.0F;
                         improvedZombieEntity.onSummoned();
 
@@ -97,11 +99,15 @@ public class WitherSkullBlockMixin {
 
     private static BlockPattern getWitherUpgradeBossPattern() {
         if (witherUpgradeBossPattern == null) {
-            witherUpgradeBossPattern = BlockPatternBuilder.start().aisle("^#^", "###", "^#^").where('#', (pos) -> {
-                return pos.getBlockState().isIn(BlockTags.WITHER_SUMMON_BASE_BLOCKS);
-            }).where('^', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(Blocks.WITHER_SKELETON_SKULL).or(BlockStatePredicate.forBlock(Blocks.WITHER_SKELETON_WALL_SKULL)))).where('~', (pos) -> {
-                return pos.getBlockState().isAir();
-            }).build();
+            witherUpgradeBossPattern = BlockPatternBuilder.start()
+                    .aisle("^#^", "###", "^#^")
+                    .where('#', (pos) -> {return pos.getBlockState().isIn(BlockTags.WITHER_SUMMON_BASE_BLOCKS);})
+                    .where('^', CachedBlockPosition.matchesBlockState(
+                            BlockStatePredicate.forBlock(Blocks.WITHER_SKELETON_SKULL)
+                                    .or(BlockStatePredicate.forBlock(Blocks.WITHER_SKELETON_WALL_SKULL)
+                                    )))
+                    .where('~', (pos) -> {return pos.getBlockState().isAir();})
+                    .build();
         }
 
         return witherUpgradeBossPattern;
